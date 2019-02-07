@@ -77,17 +77,16 @@ def intake():
         eqn.append(inp)
 
 
-​        
 
 def echelon():
     # This function converts the system into an echelon form
-    for n in range(unknowns - 1):
-        if(rearrange(n+1)):
-            for i in range(unknowns - 1 - n):
+    for n in range(1, unknowns):
+        if(rearrange(n)):
+            for i in range(1, unknowns - n + 1):
                 # make n + 1 + i [n+1] = 0 using n+1th equation, if not already zero
-                if(eqn[n+1+(i+1)][n+1] and eqn[n+1][n+1]):
-                    factor = -(eqn[n+1+(i+1)][n+1]/eqn[n+1][n+1])
-                    add(n+1+(i+1), n+1, factor)
+                if(eqn[n+i][n] and eqn[n][n]):
+                    factor = -(eqn[n+i][n]/eqn[n][n])
+                    add(n+i, n, factor)
                     
     
     
@@ -117,8 +116,6 @@ def reduce():
                 add(i, n, factor)
 
 
-​            
-​        
     # Scale each unknown to a multiple of one
     for n in range(1, unknowns+1):
         if(eqn[n][n] and eqn[n][n] != 1):
@@ -150,6 +147,6 @@ while(True):
     reduce()
     output()
     response = input("Solve another linear system? [Y/N]")
-    if(response == 'N'):
+    if(response.upper() == 'N'):
         break
 
