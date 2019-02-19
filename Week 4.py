@@ -63,20 +63,13 @@ def get_details(name, key, items):
 
 # Cohort Sessions 6
 def get_base_counts(DNA):
-    A, C, G, T = 0, 0, 0, 0
+    DNAs = {'A': 0, 'C':0, 'G': 0, 'T':0}
     for dna in DNA:
-        if(dna == 'A'):
-            A += 1
-        elif(dna == 'C'):
-            C += 1
-        elif(dna == 'G'):
-            G += 1
-        elif(dna == 'T'):
-            T += 1
+        if dna in DNAs:
+            DNAs[dna] += 1
         else:
             return 'The input DNA string is invalid'
-    counts = {'A':A, 'C':C, 'G':G, 'T':T}
-    return counts
+    return DNAs
 
 
 # Homework 1
