@@ -9,7 +9,7 @@ xe = arange(410, 690)
 ye = m * xe + c
 
 plt.plot(unique(xe), poly1d(polyfit(xe, ye, 1))(unique(xe)), color='black', label='y = {}x - {}'.format(round(m, 4),round(-c, 2)))
-plt.scatter([436, 546, 579], [3.25, 4.5, 4.825], marker='x', color='black')
+plt.scatter(x, y, marker='x', color='black')
 plt.xlabel("Wavelength / nm")
 plt.ylabel("Spectroscope Reading / cm")
 plt.grid(color='black', linestyle='--', linewidth=0.5)
