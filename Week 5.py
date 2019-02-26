@@ -195,3 +195,16 @@ def display_calendar_modified(calendar_year, month):
     return output
 
 
+
+# Exercise 1
+def move_disks(n, origin, target, spare, sol=[]):
+    if n == 1:
+        sol.append('Move disk {} from {} to {}'.format(n, origin, target))
+        return sol
+    # Move top n - 1 disks from source to spare (recurse)
+    sol = move_disks(n - 1, origin, spare, target, sol)
+    # Move bottom remaining nth disk from source to target - assumption is target is empty.
+    sol.append('Move disk {} from {} to {}'.format(n, origin, target))
+    # Move the n - 1 disks from the spare onto the target (recurse)
+    sol = move_disks(n - 1, spare, target, origin, sol)
+    return sol
