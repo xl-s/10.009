@@ -208,3 +208,7 @@ def move_disks(n, origin, target, spare, sol=[]):
     # Move the n - 1 disks from the spare onto the target (recurse)
     sol = move_disks(n - 1, spare, target, origin, sol)
     return sol
+
+# Alternate Exercise 1 Solution
+def move_disks(n, source, target, spare, sol=[]):
+    return move_disks(n - 1, spare, target, source, (move_disks(n - 1, source, spare, target, sol) + ['Move disk {} from {} to {}'.format(n, source, target)])) if n != 1 else sol + ['Move disk {} from {} to {}'.format(n, source, target)]
