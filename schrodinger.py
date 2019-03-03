@@ -171,11 +171,11 @@ def generate(ngen, lgen, mgen, rad, granularity, subfolder=''):
     meta.close()
     print('Data for n={}, l={}, m={} successfully generated and saved in {}.\n'.format(ngen, lgen, mgen, hms(elapsed)))
     
-def runbatch(granularity, subfolder=''):
+def runbatch(granularity, subfolder='', nrange=range(1, 5)):
     start = time()
     rads = {1:10, 2:10, 3:25, 4:40}
     print('Beginning data generation...\n\n')
-    for n in range(4, 5):
+    for n in nrange:
         for l in range(n):
             for m in range(-l, l+1):
                     generate(n, l, m, rads[n], granularity, subfolder=subfolder)
