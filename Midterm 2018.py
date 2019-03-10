@@ -15,7 +15,7 @@ def area_square(s):
     return s**2
 
 def vol_frustum(top_area, bottom_area, height):
-    return height/3 * (top_area + bottom_area + sqrt(top_area + bottom_area))
+    return height/3 * (top_area + bottom_area + sqrt(top_area * bottom_area))
 
 def get_volume(s1, s2, height):
     return round(vol_frustum(area_square(s1), area_square(s2), height), 3)
