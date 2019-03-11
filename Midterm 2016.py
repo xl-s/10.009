@@ -88,7 +88,6 @@ def gaussElimination(data):
 def maxProductThree(num):
     negs = sorted([n for n in num if n < 0])
     pos = sorted([n for n in num if n > 0])
-    print(pos, negs)
     if not pos:
         return negs[-1] * negs[-2] * negs [-3]
     if len(negs) == 1:
@@ -98,8 +97,8 @@ def maxProductThree(num):
     if not negs:
         return pos[-1] * pos[-2] * pos[-3]
     if len(pos) <= 2:
-        return negs[-1] * negs[-2] * pos[-1]
-    maxnegs = negs[-1] * negs[-2]
+        return negs[0] * negs[1] * pos[-1]
+    maxnegs = negs[0] * negs[1]
     maxpos = pos[-2] * pos[-3]
     if maxnegs > maxpos:
         return maxnegs * pos[-1]
