@@ -56,17 +56,6 @@ class MenuBar(BoxLayout):
 	pass
 
 
-class ButtonScreen(Screen):
-	def __init__(self, **kwargs):
-		super().__init__(**kwargs)
-		self.lay = GridLayout(cols=2)
-
-	def addButs(self, num):
-		for i in range(num):
-			self.lay.add_widget(Button())
-		self.add_widget(self.lay)
-
-
 class Week11App(App):
 	title = '👌👀👌👀👌👀👌👀👌👀 good shit go౦ԁ sHit👌 thats ✔ some good👌👌shit right👌👌there👌👌👌 right✔there ✔✔if i do ƽaү so my self 💯 i say so 💯 thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ) mMMMMᎷМ💯 👌👌 👌НO0ОଠOOOOOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ👌 👌👌 👌 💯 👌 👀 👀 👀 👌👌Good shit'
 	def build(self):
