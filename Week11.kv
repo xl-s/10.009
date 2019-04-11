@@ -1,0 +1,148 @@
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+<Application1>:
+	canvas.before:
+		Color:
+			rgba: (1, 0.753, 0.796, 1)
+		Rectangle:
+			size: self.size
+			pos: self.pos
+	Label:
+		text: "Programming is fun"
+		color: 0, 0.247, 0.204, 1
+		font_size: 50
+		on_touch_down: root.alternate(self, args[1])
+
+<Application2>:
+	canvas.before:
+		Color:
+			rgba: (1, 0.753, 0.796, 1)
+		Rectangle:
+			size: self.size
+			pos: self.pos
+	Label:
+		color: 0, 0.247, 0.204, 1
+		text: "Slide Me"
+		font_size: 50
+		on_touch_move: root.detect(self, args[1])
+
+<Application3>:
+	font_size: 30
+	GridLayout:
+		cols: 2
+		Label:
+			text: "Investment Ammount"
+			size_hint_y: None
+			font_size: root.font_size
+		TextInput:
+			font_size: root.font_size
+			size_hint_y: None
+			id: Amount			
+		Label:
+			text: "Years"		
+			font_size: root.font_size
+			size_hint_y: None
+		TextInput:
+			font_size: root.font_size
+			size_hint_y: None
+			id: Years
+		Label:
+			text: "Annual Interest Rate"	
+			font_size: root.font_size
+			size_hint_y: None
+		TextInput:
+			font_size: root.font_size
+			size_hint_y: None
+			id: Interest
+		Label:
+			text: "Future Value"
+			font_size: root.font_size
+		Label:
+			id: Result
+			text: "0"
+			font_size: root.font_size
+			size: self.width, self.font_size + 20
+		Button:
+			text: "Calculate"
+			font_size: root.font_size
+			on_release: Result.text = str(round(float(Amount.text) * (1 + float(Interest.text)/1200) ** (12 * float(Years.text)), 2))
+
+<Application4>:
+	font_size: 50
+	ScreenManager:
+		Screen:
+			name: 'menu'
+			BoxLayout:
+				Button:
+					text: "Settings"
+					on_press: self.parent.parent.parent.transition = SlideTransition(direction='left')
+					on_release: self.parent.parent.parent.current = 'settings'
+					font_size: root.font_size
+				Button:
+					text: "Quit"
+					font_size: root.font_size
+					on_release: quit()
+		Screen:
+			name: 'settings'
+			BoxLayout:
+				Label:
+					font_size: root.font_size
+					text: "Settings Screen"
+				Button:
+					font_size: root.font_size
+					text: "Back to Menu"
+					on_press: self.parent.parent.parent.transition = SlideTransition(direction='right')
+					on_release: self.parent.parent.parent.current = 'menu'
+
+<Application>:
+	Screen:
+		on_enter: app.root.text = 'Quit'
+		name: 'default'
+		BoxLayout:
+			Button:
+				text: "Application 1"
+				on_release: root.current = 'app1'
+				on_press: app.root.transition = SlideTransition(direction='left')
+				on_release: app.root.text = 'Home'
+			Button:
+				text: "Application 2"
+				on_release: app.root.text = 'Home'
+				on_press: app.root.transition = SlideTransition(direction='left')
+				on_release: root.current = 'app2'
+			Button:
+				text: "Application 3"
+				on_release: app.root.text = 'Home'
+				on_press: app.root.transition = SlideTransition(direction='left')
+				on_release: root.current = 'app3'
+			Button:
+				text: "Application 4"
+				on_release: app.root.text = 'Home'
+				on_press: app.root.transition = SlideTransition(direction='left')
+				on_release: root.current = 'app4'
+	Application1:
+		name: 'app1'
+	Application2:
+		name: 'app2'
+	Application3:
+		name: 'app3'
+	ButtonScreen:
+		name: 'app4'
+
+<MenuBar>:
+	orientation: 'vertical'
+	text: 'Quit'
+	transition: SlideTransition(direction='left')
+	Button:
+		text: root.text
+		background_color: 0.8, 0.8, 0.8, 1
+		size_hint_y: None
+		height: 30
+		on_press: root.transition = SlideTransition(direction='right')
+		on_release: if self.text == 'Quit': quit()
+		on_release: if self.text == 'Home': defa.current = 'default' 
+	Application:
+		id: defa
+		transition: root.transition
+
+<ButtonScreen>:
+	on_enter: root.addButs(<function that returns # of buttons>)
